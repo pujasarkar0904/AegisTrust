@@ -1,0 +1,8 @@
+{
+  "name": "@aegistrust/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": { "dev": "next dev -p 3000", "build": "next build", "start": "next start -p 3000", "typecheck": "tsc --noEmit" },
+  "dependencies": { "@aegistrust/core": "workspace:*", "cytoscape": "^3.30.4", "dotenv": "^16.4.7", "next": "^15.1.3", "react": "^19.0.0", "react-dom": "^19.0.0", "socket.io-client": "^4.8.1" },
+  "devDependencies": { "@types/node": "^22.10.2", "@types/react": "^19.0.3", "@types/react-dom": "^19.0.3", "typescript": "^5.7.2" }
+}

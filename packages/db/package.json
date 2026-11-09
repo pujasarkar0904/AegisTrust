@@ -1,0 +1,10 @@
+{
+  "name": "@aegistrust/db",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": { "./schema": "./src/schema.ts", "./client": "./src/client.ts" },
+  "scripts": { "db:push": "drizzle-kit push", "db:studio": "drizzle-kit studio", "typecheck": "tsc --noEmit" },
+  "dependencies": { "dotenv": "^16.4.7", "drizzle-orm": "^0.38.3", "pg": "^8.13.1" },
+  "devDependencies": { "@types/node": "^22.10.2", "@types/pg": "^8.11.10", "drizzle-kit": "^0.30.4", "typescript": "^5.7.2" }
+}

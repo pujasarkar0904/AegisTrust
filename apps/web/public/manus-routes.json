@@ -1,0 +1,1 @@
+{"routes":[{"path":"/","title":"AegisTrust Threat Scanner"},{"path":"/live-map","title":"Live Threat Graph"},{"path":"/scan/:id","title":"Scan Result"}]}

@@ -1,0 +1,25 @@
+import "./load-env.js";
+import express from "express";
+import cors from "cors";
+import rateLimit from "express-rate-limit";
+import { createServer } from "node:http";
+import { config, isAllowedOrigin } from "./config.js";
+import { scanRouter } from "./routes/scan.js";
+import { graphRouter } from "./routes/graph.js";
+import { authRouter } from "./routes/auth.js";
+import { threatsRouter } from "./routes/threats.js";
+import { createSocketBus } from "./sockets/emitter.js";
+
+const app = express();
+app.disable("x-powered-by");
+app.use(cors({ origin: (origin, callback) => callback(null, isAllowedOrigin(origin)) }));
+app.use(express.json({ limit: "32kb" }));
+app.use("/api", rateLimit({ windowMs: 60_000, limit: 30, standardHeaders: "draft-7", legacyHeaders: false }));
+app.get("/health", (_req, res) => res.json({ ok: true, service: "api-gateway" }));
+app.use("/api", authRouter);
+app.use("/api", graphRouter);
+app.use("/api", threatsRouter);
+const server = createServer(app);
+const sockets = createSocketBus(server);
+app.use("/api", scanRouter(payload => sockets.publishThreat(payload)));
+server.listen(config.port, config.bindHost, () => console.log(`AegisTrust API listening on ${config.bindHost}:${config.port}`));

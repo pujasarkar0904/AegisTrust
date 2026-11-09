@@ -1,0 +1,9 @@
+{
+  "name": "@aegistrust/core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": { ".": "./src/index.ts", "./*": "./src/*.ts" },
+  "scripts": { "typecheck": "tsc --noEmit" },
+  "devDependencies": { "@types/node": "^22.10.2", "typescript": "^5.7.2" }
+}
